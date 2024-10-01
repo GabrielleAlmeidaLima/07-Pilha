@@ -14,6 +14,7 @@ void menu();
 void inicializar();
 void pop();
 void push();
+
 //--------------------------
 
 
@@ -73,7 +74,6 @@ void inicializar()
 
 }
 
-
 void push()
 {
 	// aloca memoria dinamicamente para o novo elemento
@@ -85,15 +85,31 @@ void push()
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
-	novo->prox = NULL;
+	novo->prox = NULL;	
 
-
+	if (topo == NULL) {
+		topo = novo;
+		cout << topo->valor << "elemento inserido" << endl;
+	}
+	else {
+		novo->prox=topo;
+		topo = novo;
+		cout << novo->valor << "elemento inserido" << endl;
+	}
 }
 
 void pop()
 {
-
-	
-
+	NO* aux = topo;
+	if (topo == NULL) {
+		cout << "Lista vazia.";
+		return;
+	}
+	else {
+		topo = topo->prox;
+		free(aux);
+	}
 }
+
+
 
